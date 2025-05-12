@@ -1,5 +1,23 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
+@plugin "@tailwindcss/typography";
+
+@plugin "daisyui" {
+  themes: light, dracula, dark --default --prefersdark;
+  logs: true;
+}
 
 /* This file is for your main application CSS */
+@layer base {
+
+  html,
+  body,
+  [data-phx-main] {
+    @apply h-full;
+  }
+
+  body>[data-phx-main]>footer {
+    @apply sticky top-[100dvh];
+  }
+}

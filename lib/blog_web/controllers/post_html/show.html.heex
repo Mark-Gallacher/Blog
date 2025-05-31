@@ -1,0 +1,36 @@
+<div class="relative">
+
+  <div class="flex w-full justify-center">
+    <div class="max-w-2xl overflow-x-auto ">
+      <.link
+        navigate={~p"/post"}
+        class="mb-4 flex items-center space-x-1 text-sm hover:text-primary hover:underline md:mb-6"
+      >
+        <.icon name="hero-arrow-left" class="h-4 w-4" />
+        <span>Back to all articles</span>
+      </.link>
+
+      <h1 class= "text-3xl font-semibold">
+        {@post.title}
+      </h1>
+
+      <div class="my-8 md:my-12">
+        <div class="flex items-center justify-between">
+          <div class="flex w-fit items-center">
+            <span class="flex items-center space-x-2 text-sm font-semibold">
+              <.icon name="hero-calendar" class="h-4 w-4" />
+              <span>{Calendar.strftime(@post.date, "%d %B %Y")}</span>
+            </span>
+            <%!-- <span class="bg-base-content mx-2 h-px w-4 flex-1 opacity-20" /> --%>
+
+          </div>
+        </div>
+
+      </div>
+
+      <article class="prose prose-lg prose-p:text-base-content">
+        {raw(@post.body)}
+      </article>
+    </div>
+  </div>
+</div>

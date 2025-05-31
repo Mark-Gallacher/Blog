@@ -31,8 +31,8 @@ defmodule BlogWeb.ConnCase do
     end
   end
 
-  setup tags do
-    Blog.DataCase.setup_sandbox(tags)
+  setup do
+    # Blog.DataCase.setup_sandbox(tags)
     {:ok, conn: Phoenix.ConnTest.build_conn()}
   end
 end

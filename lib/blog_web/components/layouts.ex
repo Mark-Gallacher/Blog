@@ -9,6 +9,7 @@ defmodule BlogWeb.Layouts do
   `use BlogWeb, :live_view`.
   """
   use BlogWeb, :html
+  import BlogWeb.CustomComponents
 
-  embed_templates "layouts/*"
+  embed_templates("layouts/*")
 end

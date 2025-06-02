@@ -18,6 +18,7 @@ defmodule BlogWeb.Router do
     pipe_through(:browser)
 
     get("/", PageController, :home)
+    get("/about", AboutController, :about)
 
     get("/post", PostController, :index)
     get("/post/:id", PostController, :show)

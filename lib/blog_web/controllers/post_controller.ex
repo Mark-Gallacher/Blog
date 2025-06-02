@@ -8,8 +8,6 @@ defmodule BlogWeb.PostController do
   end
 
   def show(conn, %{"id" => id}) do
-    post = Articles.get_post_by_id!(id)
     render(conn, "show.html", post: Articles.get_post_by_id!(id))
   end
 end
-

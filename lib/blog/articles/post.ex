@@ -1,6 +1,6 @@
 defmodule Blog.Articles.Post do
-  @enforce_keys [:id, :title, :date, :description, :body, :tags, :show]
-  defstruct [:id, :title, :date, :description, :body, :tags, :show]
+  @enforce_keys [:id, :title, :date, :description, :image, :body, :tags, :show]
+  defstruct [:id, :title, :date, :description, :image, :body, :tags, :show]
 
   @doc false
   def build(filename, attrs, body) do

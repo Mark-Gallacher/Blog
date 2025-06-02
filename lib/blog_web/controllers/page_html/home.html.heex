@@ -1,34 +1,15 @@
 <.flash_group flash={@flash} />
 
 <div class="text-center justify-center object-center">
-  <h1 class="text-5xl text-blue-100 p-5 ">Welcome!</h1>
-  <h1 class="text-xl text-blue-300 p-5 text-center justify-center">Recent Posts</h1>
+  <h1 class="text-5xl text-primary p-5 ">Welcome!</h1>
+  <h1 class="text-xl text-secondary p-5 text-center justify-center">Recent Posts</h1>
 
   <%= for post <- @all_posts do %>
-    <div id="{post.id}" style="margin-bottom: 3rem;"
-      class="inline-grid grid-cols-1 gap-1 text-center justify-center object-center items-center">
-      <h2 class="text-2xl">
-        <.link href={~p"/post/#{post.id}"}>
-          <%= post.title %>
-        </.link>
-      </h2>
-
-      <img src={~p"/images/2025/#{post.image}"} class="aspect-square size-64 object-center p-2" />
-      <div style="margin-bottom: 3rem;"
-        class="inline-grid grid-cols-3 gap-1 text-center justify-center object-center items-center">
-        <p>
-          <time>
-            <%= post.date %>
-          </time>
-        </p>
-
-        <p>
-          <%= Enum.join(post.tags, ", " ) %>
-        </p>
-
-
-        <%= raw post.description %>
-      </div>
-    </div>
-    <% end %>
+      <.card 
+    title={post.title} 
+    image={post.image} 
+    description={post.description} 
+    link={post.id}
+    />
+  <% end %>
 </div>

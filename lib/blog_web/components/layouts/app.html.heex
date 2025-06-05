@@ -1,9 +1,11 @@
-
-<.topbar current_path={@current_path}/>
-
-<main class="mx-auto my-8 w-full px-4 md:my-12 md:max-w-4/5 min-w-1/2">
-  <div class="mx-auto max-w-2xl">
+<main class="mx-auto my-8 w-full px-4 md:my-5 md:max-w-4/5 min-w-1/2">
+  <div class="mx-auto max-w-6xl px-2">
     <.flash_group flash={@flash} />
-    {@inner_content}
+    <div class="items-center place-items-center">
+      <.topbar current_path={@current_path}/>
+    </div>
+    <div class="pt-10 items-center place-items-center">
+      {@inner_content}
+    </div>
   </div>
 </main>

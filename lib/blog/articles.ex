@@ -12,13 +12,12 @@ defmodule Blog.Articles do
 
   @posts Enum.sort_by(@posts, & &1.date, {:desc, Date})
 
-  @active_posts @posts |> Enum.filter(&(&1.show == true))
 
-  @tags @posts |> Enum.flat_map(& &1.tags) |> Enum.uniq() |> Enum.sort()
+  def all_posts,do: @posts
+  def all_active_posts, do: Enum.filter(all_posts(), &(&1.show == true)) 
+  def all_tags, do: Enum.map(all_active_posts(), &(&1.tags)) |> Enum.uniq() 
 
-  def all_posts, do: @posts
-  def all_active_posts, do: @active_posts
-  def all_tags, do: @tags
+
 
   defmodule NotFoundError, do: defexception([:message, plug_status: 404])
 

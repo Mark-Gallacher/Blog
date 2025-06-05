@@ -6,56 +6,82 @@ defmodule BlogWeb.CustomComponents do
   attr(:image, :string, required: true)
   attr(:description, :string, required: true)
   attr(:link, :string, required: true)
+  attr(:tags, :list, required: true)
+  attr(:date, :string, required: true)
+  attr(:class, :string, default: nil)
 
   def card(assigns) do
     ~H"""
-    <div class="card bg-base-100 shadow-sm">
-      <figure>
-        <img
+    <.link navigate={~p"/post/#{@link}"}>
+      <div class={["card bg-base-200 shadow-sm group h-full w-full ", @class]}>
+        <figure >
+          <img
           src={~p"/images/2025/#{@image}"}
-          alt="Album" />
-      </figure>
-      <div class="card-body text-left">
-        <h2 class="card-title">
-          {@title} This is a longer title!
-        </h2>
-        <p>
-          {@description} this is just to make the description much longer, like it would be nice if we can see how it hanldes a bigger paragraph
-        </p>
-        <div class="card-actions justify-center items-center">
-          <button class="btn btn-soft btn-wide btn-secondary">
-            <.link navigate={~p"/post/#{@link}"}>
-              Read
-            </.link>
+          alt="Album"/>
+
+        </figure>
+        <div class="card-body text-left">
+
+          <div class="flex flex-wrap items-center">  
+            <h2 class="card-title">
+              {@title} 
+            </h2>
+
+            <span class="text-xs text-end md:ml-auto">
+            {Calendar.strftime(@date, "%d %b %Y")}
+            </span>
+
+          </div>  
+          <p class="text-pretty text-sm dark:text-white text-black justify-text">
+            {@description}
+          </p>
+          <div :if={@tags != []} class="flex flex-wrap gap-2">
+            <%= for tag <- @tags do %>
+              <.tag label={tag} />
+            <% end %>
+          </div>
+        <div class="card-actions justify-center items-end">
+          <button class="btn btn-soft btn btn-primary ">
+            <span class="group-hover:underline">
+              Read More
+            </span>
           </button>
         </div>
       </div>
-    </div>
+        </div>
+    </.link>
     """
   end
 
+  attr(:label, :string)
+  def tag(assigns) do
+    ~H"""
+    <span class="badge badge-soft badge-accent text-bold">
+        {@label}
+    </span>    
+    """
+  end
 
- attr(:current_path, :string, required: true)
+  attr(:current_path, :string, required: true)
 
   def topbar(assigns) do
     ~H"""
-    <div class="place-items-center">
-      <div class="navbar bg-base-100 shadow-sm border max-w-5xl px-4 ">
-        <div class="mx-auto flex w-full items-center justify-between px-4">
+    <div class="place-items-center w-full py-3">
+      <div class="navbar bg-base-100 shadow-sm px-4">
+        <div class="mx-auto flex w-full items-center px-4">
           <button class="btn btn-square btn-ghost">
             <a href ="/">
               <.avatar image="profile.jpg" />
             </a>
           </button>
-        <div class="rounded-btn bg-base-300 hidden space-x-2 px-4 py-2 sm:block">
-          <.link
-            :for={%{label: label, to: to} <- list_main_pages()}
-            navigate={to}
-            class={["btn btn-sm", if(current_page?(@current_path, to), do: "btn-primary", else: "btn-ghost")]}
-          >
-            {label}
-          </.link>
-        </div>
+          <div class="mx-auto rounded-btn bg-base-300 hidden space-x-2 px-6 py-2 sm:block justify-center">
+            <.link
+              :for={%{label: label, to: to} <- list_main_pages()}
+              navigate={to}
+              class={["btn btn-sm", if(current_page?(@current_path, to), do: "btn-primary", else: "btn-ghost")]}>
+              {label}
+            </.link>
+          </div>
         </div>
       </div>
     </div>
@@ -77,13 +103,13 @@ defmodule BlogWeb.CustomComponents do
   defp list_main_pages() do
     [
       %{label: "Home", to: ~p"/"},
-      %{label: "About", to: ~p"/about"},
       %{label: "Blog", to: ~p"/post"},
+      %{label: "About", to: ~p"/about"}
     ]
   end
 
   defp current_page?(current_path, route) do
-    %{ path: path } = URI.parse(current_path)
+    %{path: path} = URI.parse(current_path)
 
     if route == "/" do
       path == route

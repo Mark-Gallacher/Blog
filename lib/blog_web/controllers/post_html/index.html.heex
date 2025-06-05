@@ -1,19 +1,7 @@
-<h1>Listing all posts</h1>
-
+<h1 class="text-xl text-secondary p-5 text-center justify-center">Recent Posts</h1>
 <%= for post <- @posts do %>
-  <div id="{post.id}" style="margin-bottom: 3rem;">
-    <h2>
-      <.link href={~p"/post/#{post.id}"}><%= post.title %></.link>
-    </h2>
 
-    <p>
-      <time><%= post.date %></time>
-    </p>
+  <.card title={post.title} image={post.image} description={post.description} link={post.id} tags={post.tags}
+    date={post.date} class="card-side" />
 
-    <p>
-      Tagged as <%= Enum.join(post.tags, ", ") %>
-    </p>
-
-    <%= raw post.description %>
-  </div>
-<% end %>
+  <% end %>

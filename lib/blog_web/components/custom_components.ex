@@ -13,7 +13,7 @@ defmodule BlogWeb.CustomComponents do
   def card(assigns) do
     ~H"""
     <.link navigate={~p"/post/#{@link}"}>
-      <div class={["card bg-base-200 shadow-sm group h-full w-full ", @class]}>
+      <div class={["card bg-base-200 shadow-sm group", @class]}>
         <figure >
           <img
           src={~p"/images/2025/#{@link}/#{@image}"}
@@ -32,7 +32,7 @@ defmodule BlogWeb.CustomComponents do
             </span>
 
           </div>  
-          <p class="text-pretty text-sm dark:text-white text-black justify-text">
+          <p class="text-pretty text-sm justify-text ">
             {@description}
           </p>
           <div :if={@tags != []} class="flex flex-wrap gap-2">
@@ -98,6 +98,17 @@ defmodule BlogWeb.CustomComponents do
         <img src={~p"/images/#{@image}"} alt="Picture of Mark" class="rounded-full"/>
       </div>
     </.link>
+    """
+  end
+
+  attr(:class, :string, default: nil)
+  slot(:inner_block)
+
+  def grid(assigns) do
+    ~H"""
+    <section class={["grid gap-5 md:grid-cols-2 lg:grid-cols-3", @class]}>
+      {render_slot(@inner_block)}
+    </section>
     """
   end
 

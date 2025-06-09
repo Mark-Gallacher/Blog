@@ -4,6 +4,7 @@ defmodule Blog.MarkdownConverter do
   """
 
   def convert(_path, body, _attr, _opts) do
-    MDEx.to_html!(body, extension: [header_ids: ""], parse: [smart: true])
+    MDEx.parse_document!(body)
+    |> MDEx.to_html!(extension: [header_ids: ""], parse: [smart: true])
   end
 end

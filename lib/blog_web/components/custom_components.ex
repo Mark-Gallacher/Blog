@@ -16,7 +16,7 @@ defmodule BlogWeb.CustomComponents do
       <div class={["card bg-base-200 shadow-sm group h-full w-full ", @class]}>
         <figure >
           <img
-          src={~p"/images/2025/#{@image}"}
+          src={~p"/images/2025/#{@link}/#{@image}"}
           alt="Album"/>
 
         </figure>
@@ -54,6 +54,7 @@ defmodule BlogWeb.CustomComponents do
   end
 
   attr(:label, :string)
+
   def tag(assigns) do
     ~H"""
     <span class="badge badge-soft badge-accent text-bold">

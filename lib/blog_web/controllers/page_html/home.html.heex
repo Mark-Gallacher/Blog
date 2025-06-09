@@ -1,39 +1,43 @@
 <.flash_group flash={@flash} />
 
-<div class="text-left items-center justify-center object-center">
-  <span class="text-5xl text-primary-content py-5 mx-auto"> 
+<div class="">
+  <h1 class="text-pretty text-3xl md:text-5xl text-primary-content font-bold py-5 w-4/5 md:w-3/5">
     Hello, I'm
-    <span class="text-5xl py-5 mx-auto bg-gradient-to-l from-gray-700 via-rose-500 to-orange-400 text-transparent bg-clip-text">
-      Mark!  
-      <div class="text-5xl text-primary-content mx-auto"> 
-        Bioinformatician and Software Developer.
-        <div class="text-2xl py-5 mx-auto text-primary-content"> 
-          This is a collection of a few things I find interesting. Mainly they focus on computational biology, machine learning, statistics and programming.
-        </div> 
-      </div> 
-    </span> 
-  </span> 
-  <p>
-
-  </p> 
-  <.link
-    navigate={~p"/post"}
-    class="mb-2 flex items-center justify-self-end space-x-1 text-md hover:text-accent hover:underline md:mb-6"
-    >
-    <span>
-      View All Posts
+    <span class="bg-gradient-to-r from-accent to-primary text-transparent bg-clip-text">
+      Mark!
     </span>
-    <.icon name="hero-arrow-right" class="h-4 w-4" />
-  </.link>
+    <br /> Bioinformatician and Software Developer.
+    <div class="pt-2">
+      <p class="mt-4 leading-relaxed font-normal text-lg md:text-xl">
+        This is a collection of a few things I find interesting. Mainly they focus on computational biology,
+        machine
+        learning, statistics and programming.
+      </p>
+    </div>
+  </h1>
+  <div class="">
+    <div class="py-5 items-center justify-between flex">
+      <span class="text-pretty text-lg font-semibold py-5">
+        Recent Posts
+      </span>
 
-  <%= for post <- @all_posts do %>
-    <.card 
-    title={post.title} 
-    image={post.image}
-    description={post.description} 
-    link={post.id}
-    tags={post.tags}
-    date={post.date}
-    />
-    <% end %>
+      <.link navigate={~p"/post"} class="btn btn-link group no-underline py-5 px-2 text-md my-2">
+        <span class="text-pretty text-primary text-lg font-thin group-hover:underline">
+          View All Posts
+        </span>
+        <.icon name="hero-arrow-right" class="h-4 w-4" />
+      </.link>
+
+    </div>
+
+    <.grid>
+      <%= for post <- @all_posts do %>
+        <.card title={post.title} image={post.image} description={post.description} link={post.id} tags={post.tags}
+          date={post.date} />
+
+        <% end %>
+
+    </.grid>
+
+  </div>
 </div>

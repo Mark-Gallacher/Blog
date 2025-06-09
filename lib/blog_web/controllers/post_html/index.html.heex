@@ -1,7 +1,11 @@
-<h1 class="text-xl text-secondary p-5 text-center justify-center">Recent Posts</h1>
-<%= for post <- @posts do %>
+<div class="mx-auto justify-center w-4/5">
+  <h1 class="text-3xl py-5 text-center ">Recent Posts</h1>
+  <section class="grid gap-5 grid-cols-1">
+    <%= for post <- @posts do %>
 
-  <.card title={post.title} image={post.image} description={post.description} link={post.id} tags={post.tags}
-    date={post.date} class="card-side" />
+      <.card title={post.title} image={post.image} description={post.description} link={post.id} tags={post.tags}
+        date={post.date} class="card-side" />
 
-  <% end %>
+      <% end %>
+  </section>
+</div>

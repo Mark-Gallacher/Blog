@@ -6,7 +6,7 @@
     <%= for post <- @posts do %>
 
       <.card title={post.title} image={post.image} description={post.description} link={post.id} tags={post.tags}
-        date={post.date} class="lg:card-side shadow grid grid-cols-2 " />
+        date={post.date} class="lg:card-side shadow-sm grid grid-cols-2 " />
 
       <% end %>
   </section>

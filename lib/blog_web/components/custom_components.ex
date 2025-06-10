@@ -104,7 +104,7 @@ defmodule BlogWeb.CustomComponents do
 
   def footer(assigns) do
     ~H"""
-    <footer class="footer footer-horizontal footer-center text-base-content rounded p-10 bg-gradient-to-b from-base-300 to-base-100">
+    <footer class="footer footer-horizontal footer-center text-base-content rounded-sm p-10 bg-info-content">
       <nav class="grid grid-flow-col gap-5">
             <.link
               :for={%{label: label, to: to} <- list_main_pages()}

@@ -40,7 +40,7 @@ defmodule BlogWeb.CustomComponents do
           <.tagset tags={@tags} />
 
           <div class="card-actions justify-center items-end">
-            <button class="btn btn-soft btn btn-primary ">
+            <button class="btn btn-soft btn btn-info">
               <span class="group-hover:underline">
                 Read More
               </span>
@@ -87,12 +87,12 @@ defmodule BlogWeb.CustomComponents do
               <.avatar image="profile.jpg" />
             </a>
           </button>
-          <div class="mx-auto rounded-btn bg-base-300 space-x-2 px-6 py-2 sm:block justify-center">
+          <div class="mx-auto rounded-btn bg-base-200 space-x-2 px-4 py-2 sm:block justify-center">
 
             <.link
               :for={%{label: label, to: to} <- list_main_pages()}
               navigate={to}
-              class={["btn btn-sm", if(current_page?(@current_path, to), do: "btn-primary", else: "btn-ghost")]}>
+              class={["btn btn-sm hover:ring-info hover:ring-4", if(current_page?(@current_path, to), do: "btn-info btn-soft", else: "btn-ghost")]}>
               {label}
             </.link>
           </div>

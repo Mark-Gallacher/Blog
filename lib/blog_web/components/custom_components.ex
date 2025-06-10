@@ -102,6 +102,21 @@ defmodule BlogWeb.CustomComponents do
     """
   end
 
+  def footer(assigns) do
+    ~H"""
+    <footer class="footer footer-horizontal footer-center text-base-content rounded p-10 bg-gradient-to-b from-base-300 to-base-100">
+      <nav class="grid grid-flow-col gap-5">
+            <.link
+              :for={%{label: label, to: to} <- list_main_pages()}
+              navigate={to}
+              class="btn btn-link no-underline hover:text-info text-base-content hover:opacity-100 opacity-70">
+              {label}
+            </.link>
+      </nav>
+    </footer>
+    """
+  end
+
   attr(:image, :string, required: true)
 
   def avatar(assigns) do

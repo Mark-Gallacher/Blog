@@ -13,12 +13,12 @@ defmodule BlogWeb.CustomComponents do
   def card(assigns) do
     ~H"""
     <.link navigate={~p"/post/#{@link}"}>
-      <div class={["card bg-base-200 shadow-sm group", @class]}>
-        <figure >
+      <div class={["card bg-base-200 shadow-sm group transition hover:-translate-y-1", @class]}>
+        <figure>
           <img
           src={~p"/images/2025/#{@link}/#{@image}"}
           alt="Album"
-          class="object-scale-down"/>
+          class="rounded object-cover"/>
 
         </figure>
         <div class="card-body text-left">
@@ -33,14 +33,14 @@ defmodule BlogWeb.CustomComponents do
             </span>
 
           </div>  
-          <p class="text-pretty text-sm justify-text text-content-primary opacity-70 pb-2">
+          <p class="text-pretty text-sm text-content-primary justify-text opacity-70 pb-2">
             {@description}
           </p>
 
           <.tagset tags={@tags} />
 
           <div class="card-actions justify-center items-end pt-2">
-            <button class="btn btn-soft btn btn-info">
+            <button class="btn btn-soft btn-wide btn-info">
               <span class="group-hover:underline">
                 Read More
               </span>

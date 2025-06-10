@@ -1,10 +1,12 @@
 <div class="mx-auto justify-center w-4/5">
   <h1 class="text-3xl py-5 text-center ">Recent Posts</h1>
+
+  <div class="divider"></div>
   <section class="grid gap-5 grid-cols-1">
     <%= for post <- @posts do %>
 
       <.card title={post.title} image={post.image} description={post.description} link={post.id} tags={post.tags}
-        date={post.date} class="lg:card-side" />
+        date={post.date} class="lg:card-side shadow grid grid-cols-2 " />
 
       <% end %>
   </section>

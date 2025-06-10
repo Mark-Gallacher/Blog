@@ -3,9 +3,9 @@
   <div class="flex w-full justify-center">
     <div class="w-4/5 overflow-x-auto">
 
-      <.link navigate={~p"/post"} class="btn btn-link group no-underline py-3 px-2 text-md my-2">
+      <.link navigate={~p"/post"} class="btn btn-link text-info group no-underline py-3 px-2 text-md my-2">
         <.icon name="hero-arrow-left" class="h-4 w-4" />
-        <span class="text-pretty text-primary text-lg font-thin group-hover:underline">
+        <span class="text-pretty text-lg font-thin group-hover:underline">
           View All Posts
         </span>
       </.link>
@@ -14,7 +14,7 @@
         {@post.title}
       </h1>
 
-      <.tagset tags={@post.tags} class="my-4"/>
+      <.tagset tags={@post.tags} class="my-4" />
 
       <div class="my-8">
         <div class="flex items-center justify-between">

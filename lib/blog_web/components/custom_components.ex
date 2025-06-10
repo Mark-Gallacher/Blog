@@ -80,19 +80,19 @@ defmodule BlogWeb.CustomComponents do
   def topbar(assigns) do
     ~H"""
     <div class="place-items-center w-full py-3">
-      <div class="navbar shadow-sm px-4 bg-transpareent">
+      <div class="navbar shadow-sm px-4">
         <div class="mx-auto flex w-full items-center px-4">
           <button class="btn btn-square btn-ghost">
             <a href ="/">
               <.avatar image="profile_4.jpg" />
             </a>
           </button>
-          <div class="mx-auto rounded-btn bg-base-200 space-x-2 px-4 py-2 sm:block justify-center">
+          <div class="mx-auto rounded-btn bg-transparent px-8 space-x-8 py-2 sm:block justify-center">
 
             <.link
               :for={%{label: label, to: to} <- list_main_pages()}
               navigate={to}
-              class={["btn btn-sm hover:ring-info hover:ring-4", if(current_page?(@current_path, to), do: "btn-info btn-soft", else: "btn-ghost")]}>
+              class={["btn btn-md w-20 px-4 hover:ring-info hover:ring-4", if(current_page?(@current_path, to), do: "btn-info btn-soft", else: "btn-ghost")]}>
               {label}
             </.link>
           </div>

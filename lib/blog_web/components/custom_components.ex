@@ -84,7 +84,7 @@ defmodule BlogWeb.CustomComponents do
         <div class="mx-auto flex w-full items-center px-4">
           <button class="btn btn-square btn-ghost">
             <a href ="/">
-              <.avatar image="profile.jpg" />
+              <.avatar image="profile_4.jpg" />
             </a>
           </button>
           <div class="mx-auto rounded-btn bg-base-200 space-x-2 px-4 py-2 sm:block justify-center">
@@ -122,7 +122,7 @@ defmodule BlogWeb.CustomComponents do
   def avatar(assigns) do
     ~H"""
     <.link navigate={~p"/"} class="avator cursor-pointer">
-      <div class="w-14">
+      <div class="w-12 sm:w-16">
         <img src={~p"/images/#{@image}"} alt="Picture of Mark" class="rounded-full"/>
       </div>
     </.link>

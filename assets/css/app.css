@@ -1,23 +1,32 @@
-@import "tailwindcss/base";
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
+@import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
 @plugin "daisyui" {
-  themes: light, dracula, dark --default --prefersdark;
-  logs: true;
+  themes: light, night --default --prefersdark, dark, sunset;
 }
 
-/* This file is for your main application CSS */
-@layer base {
+@plugin "./tailwind_heroicons.js";
 
-  html,
-  body,
-  [data-phx-main] {
-    @apply h-full;
-  }
+/* Allows prefixing tailwind classes with LiveView classes to add rules */
+/* only when LiveView classes are applied, for example: */
+    /* <div class="phx-click-loading:animate-ping"> */
 
-  body>[data-phx-main]>footer {
-    @apply sticky top-[100dvh];
-  }
+@variant phx-click-loading ([".phx-click-loading&", ".phx-click-loading &"]);
+@variant phx-submit-loading ([".phx-submit-loading&", ".phx-submit-loading &"]);
+@variant phx-change-loading ([".phx-change-loading&", ".phx-change-loading &"]);
+
+/* @theme { */
+/*   --font-sans: "GeistSans", "ui-sans-serif", "system-ui", "-apple-system", "BlinkMacSystemFont", "Inter", "Segoe UI", "Roboto", "sans-serif", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"; */
+/*   --font-mono: "GeistMono", "ui-monospace", "SFMono-Regular", "Roboto Mono", "Menlo", "Monaco", "Liberation Mono", "DejaVu Sans Mono", "Courier New", "monospace"; */
+/* } */
+
+html,
+body,
+[data-phx-main] {
+  height: 100%;
+}
+
+body>[data-phx-main]>footer {
+  position: sticky;
+  top: 100dvh;
 }

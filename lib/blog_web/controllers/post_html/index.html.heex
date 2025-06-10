@@ -4,7 +4,7 @@
     <%= for post <- @posts do %>
 
       <.card title={post.title} image={post.image} description={post.description} link={post.id} tags={post.tags}
-        date={post.date} class="card-side" />
+        date={post.date} class="lg:card-side" />
 
       <% end %>
   </section>

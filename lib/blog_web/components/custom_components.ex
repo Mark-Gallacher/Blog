@@ -17,7 +17,8 @@ defmodule BlogWeb.CustomComponents do
         <figure >
           <img
           src={~p"/images/2025/#{@link}/#{@image}"}
-          alt="Album"/>
+          alt="Album"
+          class="object-scale-down"/>
 
         </figure>
         <div class="card-body text-left">
@@ -28,27 +29,25 @@ defmodule BlogWeb.CustomComponents do
             </h2>
 
             <span class="text-xs text-end md:ml-auto">
-            {Calendar.strftime(@date, "%d %b %Y")}
+              {Calendar.strftime(@date, "%d %b %Y")}
             </span>
 
           </div>  
           <p class="text-pretty text-sm justify-text ">
             {@description}
           </p>
-          <div :if={@tags != []} class="flex flex-wrap gap-2">
-            <%= for tag <- @tags do %>
-              <.tag label={tag} />
-            <% end %>
+
+          <.tagset tags={@tags} />
+
+          <div class="card-actions justify-center items-end">
+            <button class="btn btn-soft btn btn-primary ">
+              <span class="group-hover:underline">
+                Read More
+              </span>
+            </button>
           </div>
-        <div class="card-actions justify-center items-end">
-          <button class="btn btn-soft btn btn-primary ">
-            <span class="group-hover:underline">
-              Read More
-            </span>
-          </button>
         </div>
       </div>
-        </div>
     </.link>
     """
   end
@@ -60,6 +59,19 @@ defmodule BlogWeb.CustomComponents do
     <span class="badge badge-soft badge-accent text-bold">
         {@label}
     </span>    
+    """
+  end
+
+  attr(:tags, :list, default: [])
+  attr(:class, :string, default: nil)
+
+  def tagset(assigns) do
+    ~H"""
+    <div :if={@tags != []} class={["flex flex-wrap gap-2", @class]}>
+      <%= for tag <- @tags do %>
+        <.tag label={tag} />
+        <% end %>
+    </div> 
     """
   end
 

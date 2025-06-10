@@ -33,13 +33,13 @@ defmodule BlogWeb.CustomComponents do
             </span>
 
           </div>  
-          <p class="text-pretty text-sm justify-text ">
+          <p class="text-pretty text-sm justify-text text-content-primary opacity-70 pb-2">
             {@description}
           </p>
 
           <.tagset tags={@tags} />
 
-          <div class="card-actions justify-center items-end">
+          <div class="card-actions justify-center items-end pt-2">
             <button class="btn btn-soft btn btn-info">
               <span class="group-hover:underline">
                 Read More

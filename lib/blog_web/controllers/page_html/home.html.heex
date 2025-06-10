@@ -15,29 +15,29 @@
       </p>
     </div>
   </h1>
-  <div class="">
-    <div class="py-5 items-center justify-between flex">
-      <span class="text-pretty text-lg font-semibold py-5">
-        Recent Posts
+
+  <div class="divider"></div>
+  <div class="py-2 items-center justify-between flex">
+    <span class="text-pretty text-lg font-semibold py-2">
+      Recent Posts
+    </span>
+
+    <.link navigate={~p"/post"} class="btn btn-link group no-underline px-2 text-md my-2 text-info ">
+      <span class="text-pretty text-lg font-thin group-hover:underline">
+        View All Posts
       </span>
-
-      <.link navigate={~p"/post"} class="btn btn-link group no-underline py-5 px-2 text-md my-2 text-info ">
-        <span class="text-pretty text-lg font-thin group-hover:underline">
-          View All Posts
-        </span>
-        <.icon name="hero-arrow-right" class="h-5 w-6" />
-      </.link>
-
-    </div>
-
-    <.grid>
-      <%= for post <- @all_posts do %>
-        <.card title={post.title} image={post.image} description={post.description} link={post.id} tags={post.tags}
-          date={post.date} />
-
-        <% end %>
-
-    </.grid>
+      <.icon name="hero-arrow-right" class="h-5 w-6" />
+    </.link>
 
   </div>
+
+  <.grid>
+    <%= for post <- @all_posts do %>
+      <.card title={post.title} image={post.image} description={post.description} link={post.id} tags={post.tags}
+        date={post.date} />
+
+      <% end %>
+
+  </.grid>
+
 </div>

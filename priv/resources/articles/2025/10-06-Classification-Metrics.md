@@ -12,9 +12,6 @@ true,
 }
 ---
 
-
-!["Image"](/images/2025/Classification-Metrics/Prec_Recall_Classes.png "Caption")
-
 ## Quick Summary
 
 Machine learning has been around for quite a while and covers simple regression
@@ -75,6 +72,59 @@ straight line. They are trying to use a linear function instead, meaning they
 can generate complex non-linear boundaries (squiggly lines) between classes.
 So much for sparing you the details.
 
+I also used a dummy classifier model, or a naive classifier, that doesn't use
+any of the information in our data but instead simply guesses the majority
+class, for every single sample. You can imagine how useless this would be in
+practice but for us, we want to see if our metrics uncover the uselessness of
+this model. Ideally, we want a metric that has a high score for a great model
+and a low score for a poor model. If our metric is high in this poor model,
+would that not mean the metric over-simplifying or over-estimating the
+performance or usefulness of our model. We are also going to use a variety of
+metrics, without listing all of them, there are three main groups of metrics we
+are interested in: 
+
+- **Class-Agnostic Metrics** - Ignore class performances and focus on overall model
+performance (think like accuracy - the number of correct divided by number of
+guesses)
+
+- **Micro-averaged** - Class-sensitive, they add up the number of correct and
+incorrect predictions for each class, then pool them together to calculate the
+overall metric. (Let's see we have class A had 8 and 2, class B 9 and 1, and
+class C has 1 and 4 correct/incorrect predictions, respectively. We would add
+up the correct (8 + 9 + 1) and the total (10 + 10 + 5) guesses before we pass
+them to the formula for the metric - so "micro" accuracy would be 72%*).
+
+- **Macro-averaged** - Class-sensitive, they calculate the metric for each
+class first, then take the average. (In our example, "macro" accuracy would be
+the mean of 8 / 10, 9 / 10 and 1 / 5, so ~63%).
+
+*It is worth pointing our the normal accuracy is the same as the "micro"
+accuracy. Although micro metrics use class-specific information, when they
+total the values before passing them to the formula - it renders the metric
+*class-agnostic*. Also "macro" accuracy is more commonly called *Balanced
+accuracy*. Notice how in our simple example, micro averaging increased the
+score more than 10% compared to macro averaging. The key difference is how the
+smaller (and usually less performant) class is being handled. In our example,
+the minority has equally influential on the final metric to the majority class
+in the macro averaged metric, instead of being weighted by the size of the
+class.
+
+!["Image comparing Micro and Macro averaging methods and the class-specific
+metrics"](/images/2025/Classification-Metrics/Prec_Recall_Classes.png "On the
+X-axis we have a our type of model, and on the Y-axis we have the median score.
+The three plots show the three metrics of interest - Precision, Recall and
+F1-Score. With the solid lines displaying the median score for the Micro- or
+Macro-averaged metric, we are comparing them with the class-specific
+(dashed-lines) to see what information the averaged scored might be hiding.
+What is important to note is that Micro-averaged metrics have slightly scores
+compared to Macro, the reason for this is how they handle the smaller classes.
+The Micro-averaged metric is overlooking the week performance of the minority
+in favour of a better performance overall - while the Macro is penalised by the
+weak performance in the minority classes. The difference in Recall between RF
+and GB shows GB struggling with the CS class (the minority class).
+Micro-averaged recall has a minimal decrease whereas Macro has a more sizeable
+decrease for the same performance.")
+
 ## Glance at the Results
 
 To replicate the nature way a researcher would fit their chosen model to their
@@ -130,9 +180,17 @@ appears to prefer a more even TPR across the different groups.")
 
 ## Conclusion
 
-
-
-
-
-
-
+Overall, we showed how class-agnostic metrics tend to overlook the weaker
+performance of minority classes and how micro-average metrics behave like these
+class-agnostic metrics. Also, we pointed out that the majority of our models
+where given a higher score for these class-agnostic metrics compared to
+class-specific ones, likely over-estimating the models performance. In
+contrast, the macro-averaged metrics tend to highlight this low performance at
+the cost of the values for the larger classes. Interestingly, we displayed how
+the variance in performance is inversely proportional to the size of the class,
+where small classes typically have a wider range of values. This would indicate
+the choice of metric should be influenced by how we wish to handle these
+minority classes. In a medical setting we wouldn't want to ignore these rare
+diseases for simply being more rare whereas for image or text classification
+that could have hundreds or thousands of labels, we might prefer to overlook
+them.
